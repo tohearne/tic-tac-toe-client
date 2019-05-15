@@ -1,1 +1,150 @@
 @import '~bootstrap/scss/bootstrap';
+
+$alt-color: $cyan;
+$body-bg-color: $gray-200;
+$font-color: $light;
+
+body {
+  background-color: $body-bg-color;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+form {
+  display: flex;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.header-desktop {
+  align-items: center;
+  display: none;
+  height: 5rem;
+  justify-content: center;
+}
+
+.login-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: .5rem;
+  position: absolute;
+  right: 0;
+  width: 30%;
+}
+
+.form-line {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+
+  > input {
+    margin-bottom: .2rem;
+    margin-right: 1%;
+    width: 37.5%;
+  }
+
+
+  > .button {
+    margin-right: 0;
+    width: 22%;
+  }
+}
+
+.form-stack {
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+
+  > input {
+    margin-top: .5rem;
+    width: 90%;
+  }
+
+
+  > .button {
+    margin-top: 1rem;
+    width: 50%;
+  }
+}
+
+.dropdown-menu {
+  width: 20rem;
+}
+
+.mobile-forms {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 3rem 0 0;
+  max-width: 900px;
+}
+
+.game-square {
+  background-color: $alt-color;
+  font-size: 25vw;
+  height: 25vw;
+  line-height: 25vw;
+  margin: 1%;
+  text-align: center;
+  width: 25vw;
+}
+
+.alt-color {
+  background-color: $alt-color;
+}
+@media(min-width: 450px) {
+  .mobile-forms {
+    height: 11rem;
+
+
+    > form {
+      width: 50%;
+
+
+      > input {
+        width: 90%;
+      }
+
+
+      > .button {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media(min-width: 824px) {
+  .header-desktop {
+    display: flex;
+  }
+
+  .header-mobile {
+    display: none;
+  }
+}
+
+@media(min-width: 900px) {
+  .game-square {
+    font-size: 225px;
+    height: 225px;
+    line-height: 225px;
+    width: 225px;
+  }
+}
