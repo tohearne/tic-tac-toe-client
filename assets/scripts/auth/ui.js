@@ -15,6 +15,9 @@ const onSignInSuccess = responseData => {
   console.log('Signed in successfully!')
   console.log(responseData)
   store.user = responseData.user
+  $('.ui-login').addClass('disable')
+  $('.ui-user').removeClass('disable')
+  $('.game-select').removeClass('disable')
 }
 
 const onSignInFailure = () => {
@@ -33,6 +36,11 @@ const onChangePasswordFailure = () => {
 const onSignOutSuccess = (responseData) => {
   console.log('Signed out successfully!')
   console.log(responseData)
+  $('.ui-user').addClass('disable')
+  $('.ui-login').removeClass('disable')
+  $('.game-overlay').removeClass('disable')
+  $('.game-ui').addClass('disable')
+  $('.game-square').text('')
 }
 
 const onSignOutFailure = () => {

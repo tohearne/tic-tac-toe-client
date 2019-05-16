@@ -13,10 +13,6 @@ h1 {
   text-align: center;
 }
 
-form {
-  display: flex;
-}
-
 main {
   display: flex;
   justify-content: center;
@@ -29,7 +25,17 @@ main {
   justify-content: center;
 }
 
-.login-info {
+.login-desktop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: .5rem;
+  position: absolute;
+  right: 0;
+  width: 30%;
+}
+
+.user-desktop {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -40,6 +46,7 @@ main {
 }
 
 .form-line {
+  display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 
@@ -59,6 +66,7 @@ main {
 
 .form-stack {
   align-items: center;
+  display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -80,15 +88,14 @@ main {
   width: 20rem;
 }
 
-.mobile-forms {
+.login-mobile {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-
-.game {
+.game-board {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -103,17 +110,53 @@ main {
   line-height: 25vw;
   margin: 1%;
   text-align: center;
+  user-select: none;
   width: 25vw;
+}
+
+.game-overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .6);
+  border-radius: 5px;
+  display: flex;
+  height: 80vw;
+  justify-content: center;
+  position: absolute;
+  top: 7.25rem;
+  width: 80vw;
+}
+
+.login-message {
+  background-color: white;
+  border-color: gray;
+  border-radius: 5px;
+  border-width: 5px;
+  font-size: 5vw;
+  padding: 5px 10px;
+}
+
+.game-select {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+
+  > button {
+    font-size: 5vw;
+    margin: 0 1vw;
+  }
+}
+
+.disable {
+  display: none;
 }
 
 .alt-color {
   background-color: $alt-color;
 }
-@media(min-width: 450px) {
-  .mobile-forms {
-    height: 11rem;
 
-
+@media(min-width: 410px) {
+  .login-mobile {
     > form {
       width: 50%;
 
@@ -138,6 +181,10 @@ main {
   .header-mobile {
     display: none;
   }
+
+  .game-overlay {
+    top: 8.25rem;
+  }
 }
 
 @media(min-width: 900px) {
@@ -146,5 +193,21 @@ main {
     height: 225px;
     line-height: 225px;
     width: 225px;
+  }
+
+  .game-overlay {
+    height: 720px;
+    width: 720px;
+  }
+
+  .login-message {
+    font-size: 45px;
+  }
+
+  .game-select {
+    > button {
+      font-size: 45px;
+      margin: 0 9px;
+    }
   }
 }
