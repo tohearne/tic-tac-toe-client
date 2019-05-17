@@ -59,7 +59,7 @@ const menuBack = () => {
 const updateGamesData = () => {
   $('.games-played').text(`Games completed: ${store.user.fullGames.length}`)
   $('.games-won').text(`Games won: ${store.user.wins}`)
-  $('.games-percent').text(`Win rate: ${Math.trunc(store.user.wins / store.user.fullGames.length * 100)}%`)
+  $('.games-percent').text(`Win rate: ${Math.round(store.user.wins / store.user.fullGames.length * 100)}%`)
 }
 
 module.exports = {

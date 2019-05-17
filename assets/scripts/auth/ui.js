@@ -7,7 +7,7 @@ const messageDurration = 3000
 const messageFadeOut = 400
 
 const onSignUpSuccess = () => {
-  $('.login-message').text('Signed Up Successfully').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
+  $('.login-message').text('Signed Up!').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onSignUpFailure = () => {
@@ -46,7 +46,7 @@ const onSignOutSuccess = () => {
 }
 
 const onSignOutFailure = () => {
-  $('.login-message').text('Failed to Sign Out?').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
+  $('.login-message').text('Failed to Sign-out?').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 module.exports = {
