@@ -57,11 +57,11 @@ const menuBack = () => {
 }
 
 const updateGamesData = () => {
+  let totalGames = store.user.fullGames.length
   $('.games-played').text(`Games completed: ${store.user.fullGames.length}`)
   $('.games-won').text(`Games won: ${store.user.wins}`)
-  let winRate = Math.round(store.user.wins / store.user.fullGames.length * 100)
-  if (winRate.isNaN()) winRate = 0
-  $('.games-percent').text(`Win rate: ${winRate}%`)
+  if (totalGames === 0) totalGames = 1
+  $('.games-percent').text(`Win rate: ${Math.round(store.user.wins / totalGames * 100)}%`)
 }
 
 module.exports = {
