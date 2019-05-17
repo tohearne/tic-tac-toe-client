@@ -3,48 +3,39 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
+const gameEvents = require('../game/events')
 
 const onSignUp = event => {
-  console.log('sign up:' + event)
   event.preventDefault()
   const formData = getFormFields(event.target)
-  console.log(formData)
+  event.target.reset()
   api.signUp(formData)
-    .then(responseData => {
-      event.target.reset()
-      ui.onSignUpSuccess(responseData)
-    })
+    .then(ui.onSignUpSuccess)
     .catch(ui.onSignUpFailure)
 }
 
 const onSignIn = event => {
-  console.log('sign in:' + event)
   event.preventDefault()
   const formData = getFormFields(event.target)
-  console.log(formData)
+  event.target.reset()
   api.signIn(formData)
-    .then(responseData => {
-      event.target.reset()
-      ui.onSignInSuccess(responseData)
+    .then(returnData => {
+      ui.onSignInSuccess(returnData)
+      gameEvents.onGetGamesData()
     })
     .catch(ui.onSignInFailure)
 }
 
 const onChangePassword = event => {
-  console.log('change password:' + event)
   event.preventDefault()
   const formData = getFormFields(event.target)
-  console.log(formData)
+  event.target.reset()
   api.changePassword(formData)
-    .then(responseData => {
-      event.target.reset()
-      ui.onChangePasswordSuccess(responseData)
-    })
+    .then(ui.onChangePasswordSuccess)
     .catch(ui.onChangePasswordFailure)
 }
 
 const onSignOut = event => {
-  console.log('sign out:' + event)
   event.preventDefault()
   api.signOut()
     .then(ui.onSignOutSuccess)

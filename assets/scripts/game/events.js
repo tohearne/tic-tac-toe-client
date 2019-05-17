@@ -6,7 +6,6 @@ const logic = require('./logic')
 const store = require('../store')
 
 const onStartLocal = event => {
-  console.log('start local:' + event)
   event.preventDefault()
   api.startNewGame()
     .then(returnData => {
@@ -18,7 +17,6 @@ const onStartLocal = event => {
 }
 
 const onStartOnline = event => {
-  console.log('start online:' + event)
   event.preventDefault()
   api.startNewGame()
     .then(returnData => {
@@ -34,13 +32,15 @@ const onClickSquare = event => {
   const index = event.target.getAttribute('data-tileId')
   if (logic.setSquare(index)) {
     ui.setSquareSuccess(event.target)
-    if (logic.checkWin()) {
+    if (logic.checkWin(store.game.lastMove, store.game)) {
       ui.onGameOver(false)
     } else if (logic.checkTie()) {
       ui.onGameOver(true)
     }
     api.updateGame(index)
-      .then(console.log)
+      .then(() => {
+        if (store.game.over) onGetGamesData()
+      })
   } else ui.setSquareFailure()
 }
 
@@ -55,10 +55,21 @@ const onMenuBack = event => {
   ui.menuBack()
 }
 
+const onGetGamesData = () => {
+  api.getGamesData()
+    .then(returnData => {
+      logic.storeFullGames(returnData)
+      logic.countWins(store.user.fullGames)
+      ui.updateGamesData()
+    })
+    .catch()
+}
+
 module.exports = {
   onStartLocal,
   onStartOnline,
   onClickSquare,
   onGameRestart,
-  onMenuBack
+  onMenuBack,
+  onGetGamesData
 }

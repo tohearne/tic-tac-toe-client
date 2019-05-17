@@ -3,11 +3,11 @@
 const store = require('../store')
 
 const onStartLocalSuccess = (responseData) => {
-  console.log('Started a local game successfully!')
   store.game = responseData.game
   store.game.local = true
   $('.game-overlay').addClass('disable')
   $('.game-ui').addClass('disable')
+  $('.game-x').addClass('x-turn')
 }
 
 const onStartLocalFailure = () => {
@@ -15,7 +15,6 @@ const onStartLocalFailure = () => {
 }
 
 const onStartOnlineSuccess = responseData => {
-  console.log('Started an online game successfully!')
   store.game = responseData.game
   store.game.local = false
   $('.game-overlay').addClass('disable')
@@ -27,35 +26,40 @@ const onStartOnlineFailure = () => {
 }
 
 const setSquareSuccess = (square) => {
-  console.log('Square set successfully!')
   square.innerHTML = store.game.cells[square.getAttribute('data-tileId')]
+  $(`.game-${store.game.lastMove.toLowerCase()}`).removeClass(`${store.game.lastMove.toLowerCase()}-turn`)
+  $(`.game-${store.game.nextMove.toLowerCase()}`).addClass(`${store.game.nextMove.toLowerCase()}-turn`)
 }
 
 const setSquareFailure = () => {
-  console.log('Failed to set square!')
+  $('.game-message').text('Square already taken').fadeIn(100).delay(800).fadeOut(400)
 }
 
 const onGameOver = (boolTie) => {
   if (boolTie) {
     $('#game-over-text').text('Tie')
-    console.log(`Game Over! - Tie`)
   } else {
     $('#game-over-text').text(`${store.game.lastMove} Wins!`)
-    console.log(`Game Over! - ${store.game.lastMove} Wins!`)
   }
   $('.game-overlay').removeClass('disable')
   $('.game-results').removeClass('disable')
+  $(`.game-${store.game.nextMove.toLowerCase()}`).removeClass(`${store.game.nextMove.toLowerCase()}-turn`)
   store.game.over = true
 }
 
 const resetBoard = () => {
-  console.log('Board is reset')
   $('.game-square').text('')
 }
 
 const menuBack = () => {
   $('.game-ui').addClass('disable')
   $('.game-select').removeClass('disable')
+}
+
+const updateGamesData = () => {
+  $('.games-played').text(`Games completed: ${store.user.fullGames.length}`)
+  $('.games-won').text(`Games won: ${store.user.wins}`)
+  $('.games-percent').text(`Win rate: ${Math.trunc(store.user.wins / store.user.fullGames.length * 100)}%`)
 }
 
 module.exports = {
@@ -67,5 +71,6 @@ module.exports = {
   setSquareFailure,
   onGameOver,
   resetBoard,
-  menuBack
+  menuBack,
+  updateGamesData
 }

@@ -29,7 +29,16 @@ const updateGame = index => $.ajax({
   }
 })
 
+const getGamesData = () => $.ajax({
+  url: `${config.apiUrl}/games`,
+  method: 'GET',
+  headers: {
+    Authorization: `Token ${store.user.token}`
+  }
+})
+
 module.exports = {
   startNewGame,
-  updateGame
+  updateGame,
+  getGamesData
 }

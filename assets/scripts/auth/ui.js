@@ -2,49 +2,51 @@
 
 const store = require('../store')
 
-const onSignUpSuccess = (responseData) => {
-  console.log('Signed up successfully!')
-  console.log(responseData)
+const messageFadeIn = 300
+const messageDurration = 3000
+const messageFadeOut = 400
+
+const onSignUpSuccess = () => {
+  $('.login-message').text('Signed Up Successfully').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onSignUpFailure = () => {
-  console.log('Sign up failed!')
+  $('.login-message').text('Sign-up Failed!').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onSignInSuccess = responseData => {
-  console.log('Signed in successfully!')
-  console.log(responseData)
   store.user = responseData.user
   $('.ui-login').addClass('disable')
   $('.ui-user').removeClass('disable')
   $('.game-select').removeClass('disable')
+  $('.navbar-toggler').addClass('user-info')
+  $('.login-message').text('Signed In!').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onSignInFailure = () => {
-  console.log('Sign in failed!')
+  $('.login-message').text('Sign-in Failed!').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
-const onChangePasswordSuccess = (responseData) => {
-  console.log('Password changed successfully!')
-  console.log(responseData)
+const onChangePasswordSuccess = () => {
+  $('.login-message').text('Password Changed!').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onChangePasswordFailure = () => {
-  console.log('Failed to change password!')
+  $('.login-message').text('Failed to Change Password!').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
-const onSignOutSuccess = (responseData) => {
-  console.log('Signed out successfully!')
-  console.log(responseData)
+const onSignOutSuccess = () => {
   $('.ui-user').addClass('disable')
   $('.ui-login').removeClass('disable')
   $('.game-overlay').removeClass('disable')
   $('.game-ui').addClass('disable')
+  $('.navbar-toggler').removeClass('user-info')
   $('.game-square').text('')
+  $('.login-message').text('Signed Out!').removeClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 const onSignOutFailure = () => {
-  console.log('Sign out failed!')
+  $('.login-message').text('Failed to Sign Out?').addClass('failed').fadeIn(messageFadeIn).delay(messageDurration).fadeOut(messageFadeOut)
 }
 
 module.exports = {

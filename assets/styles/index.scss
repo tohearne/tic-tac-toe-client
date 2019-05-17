@@ -1,14 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
-
-$alt-color: $cyan;
-$body-bg-color: $gray-200;
-$font-color: $light;
+@import './themes';
 
 body {
-  background-color: $body-bg-color;
+  background-color: $background-color;
 }
 
 h1 {
+  color: $text-light;
   margin: 0 auto;
   text-align: center;
 }
@@ -16,6 +14,22 @@ h1 {
 main {
   display: flex;
   justify-content: center;
+}
+
+div,
+p {
+  color: $text-light;
+}
+
+input {
+  background-color: $background-dark;
+  border-color: $border-medium;
+  color: $text-light;
+}
+
+button {
+  background-color: $background-dark;
+  color: $text-light;
 }
 
 .header-desktop {
@@ -54,7 +68,7 @@ main {
   > input {
     margin-bottom: .2rem;
     margin-right: 1%;
-    width: 37.5%;
+    width: 38%;
   }
 
 
@@ -85,6 +99,8 @@ main {
 }
 
 .dropdown-menu {
+  background-color: $background-dark;
+  border-color: $border-medium;
   width: 20rem;
 }
 
@@ -95,17 +111,42 @@ main {
   justify-content: space-around;
 }
 
+.login-message {
+  color: $text-success;
+  display: none;
+  margin: auto;
+}
+
 .game-board {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 3rem 0 0;
+  margin: 10vw 0 0;
   max-width: 900px;
   position: relative;
 }
 
+.game-header {
+  align-content: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 720px;
+  position: absolute;
+  top: -8vw;
+  width: 80%;
+}
+
+.game-turn {
+  border-radius: 5px;
+  font-size: 7vw;
+  height: 100%;
+  line-height: 7vw;
+  text-align: center;
+  width: 50%;
+}
+
 .game-square {
-  background-color: $alt-color;
+  background-color: $game-tile;
   font-size: 25vw;
   height: 25vw;
   line-height: 25vw;
@@ -117,7 +158,7 @@ main {
 
 .game-overlay {
   align-items: center;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: $overlay-dark;
   border-radius: 5px;
   display: flex;
   height: 80vw;
@@ -127,17 +168,16 @@ main {
   width: 80vw;
 }
 
-.login-message {
-  background-color: white;
-  border-color: gray;
+.game-login {
+  background-color: $background-dark;
   border-radius: 5px;
-  border-width: 5px;
   font-size: 5vw;
   padding: 5px 10px;
 }
 
 .game-select {
   align-items: center;
+  border-color: $border-medium;
   display: flex;
   justify-content: center;
 
@@ -148,12 +188,41 @@ main {
   }
 }
 
-.disable {
+.game-message {
+  background-color: $overlay-dark;
+  border-radius: 5px;
   display: none;
+  font-size: 5vw;
+  line-height: 5vw;
+  padding: 5px;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: 36.5vw;
 }
 
-.alt-color {
-  background-color: $alt-color;
+.failed {
+  color: $text-error;
+}
+
+.game-x {
+  background-color: $x-color-dark;
+}
+
+.game-o {
+  background-color: $o-color-dark;
+}
+
+.x-turn {
+  background-color: $x-color;
+}
+
+.o-turn {
+  background-color: $o-color;
+}
+
+.disable {
+  display: none;
 }
 
 @media(min-width: 410px) {
@@ -185,11 +254,30 @@ main {
 }
 
 @media(min-width: 900px) {
+  .game-board {
+    margin: 90px 0 0;
+  }
+
+  .game-header {
+    top: -72px;
+  }
+
+  .game-turn {
+    font-size: 63px;
+    line-height: 63px;
+  }
+
   .game-square {
     font-size: 225px;
     height: 225px;
     line-height: 225px;
     width: 225px;
+  }
+
+  .game-message {
+    font-size: 45px;
+    line-height: 45px;
+    top: 20.5rem;
   }
 
   .game-overlay {
@@ -198,7 +286,7 @@ main {
     width: 720px;
   }
 
-  .login-message {
+  .game-login {
     font-size: 45px;
   }
 

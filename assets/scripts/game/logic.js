@@ -10,39 +10,49 @@ const lines = [
   [0, 4, 8],
   [2, 4, 6]
 ]
-let nextLetter = ''
 
 const store = require('../store')
 
 const setNextLetter = () => {
-  if (store.game.local) nextLetter = 'X'
+  if (store.game.local) store.game.nextMove = 'X'
   else {
-    if (store.game.player_x.id === store.user.id) nextLetter = 'X'
-    else nextLetter = 'O'
+    if (store.game.player_x.id === store.user.id) store.game.nextMove = 'X'
+    else store.game.nextMove = 'O'
   }
 }
 
 const setSquare = index => {
   if (store.game.cells[index] === '') {
-    store.game.cells[index] = nextLetter
+    store.game.cells[index] = store.game.nextMove
     if (store.game.local) {
-      store.game.lastMove = nextLetter
-      if (nextLetter === 'X') nextLetter = 'O'
-      else nextLetter = 'X'
+      store.game.lastMove = store.game.nextMove
+      if (store.game.nextMove === 'X') store.game.nextMove = 'O'
+      else store.game.nextMove = 'X'
     }
     return true
   } else return false
 }
 
-const checkWin = () => lines.some(line => line.every(index => {
-  return store.game.cells[index] === store.game.cells[line[0]] && store.game.cells[line[0]] !== ''
-}))
+const checkWin = (letter, game) => lines.some(line => line.every(index => game.cells[index] === letter))
 
 const checkTie = () => store.game.cells.every(index => index !== '')
+
+const storeFullGames = returnData => {
+  store.user.fullGames = returnData.games.filter(game => game.over)
+}
+
+const countWins = (games) => {
+  store.user.wins = games.filter(game => {
+    if (game.player_x.id === store.user.id) return checkWin('X', game)
+    else return checkWin('O', game)
+  }).length
+}
 
 module.exports = {
   setNextLetter,
   setSquare,
   checkWin,
-  checkTie
+  checkTie,
+  storeFullGames,
+  countWins
 }

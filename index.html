@@ -21,6 +21,7 @@
                 <input type='password' name='credentials[password]' placeholder='Password'>
                 <input class='button' type='Submit' value='Sign In'>
             </form>
+            <h6 class='login-message'></h6>
             <div class="btn-group">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Not a member yet?
@@ -36,14 +37,20 @@
             </div>
           </div>
           <div class='user-desktop ui-user disable'>
+            <h6 class='login-message'></h6>
             <div class="btn-group">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle user-info" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Your Profile
               </button>
               <div class="dropdown-menu dropdown-menu-right">
                 <div class='user-stats'>
                 </div>
                 <div class='user-data'>
+                  <div class=game-data>
+                    <p class='games-played'></p>
+                    <p class='games-won'></p>
+                    <p class='games-percent'></p>
+                  </div>
                   <form class='form-stack change-password'>
                     <input type='password' name='passwords[old]' placeholder='Old Password'>
                     <input type='password' name='passwords[new]' placeholder='New Password'>
@@ -63,6 +70,7 @@
                 <input type='email' name='credentials[email]' placeholder='Email'>
                 <input type='password' name='credentials[password]' placeholder='Password'>
                 <input class='button' type='Submit' value='Sign In'>
+                <h6 class='login-message'></h6>
               </form>
               <form class='form-stack sign-up'>
                 <h6>Sign Up</h6>
@@ -76,12 +84,18 @@
               <div class='user-stats form-stack'>
               </div>
               <div class='user-data form-stack'>
+                <div class=game-data>
+                  <p class='games-played'></p>
+                  <p class='games-won'></p>
+                  <p class='games-percent'></p>
+                </div>
                 <form class='form-stack change-password'>
                   <h7>Change Password</h7>
                   <input type='password' name='passwords[old]' placeholder='Old Password'>
                   <input type='password' name='passwords[new]' placeholder='New Password'>
                   <input class='button' type='Submit' value='Change'>
                 </form>
+                <h6 class='login-message'></h6>
                 <input class='button sign-out' type='button' value='Sign Out'>
               </div>
             </div>
@@ -96,6 +110,11 @@
       </header>
       <main>
         <div class='game-board'>
+          <div class='game-header form-line'>
+            <div class='game-turn game-x'>X</div>
+            <div class='game-turn game-o'>O</div>
+            <div class='game-id'></div>
+          </div>
           <div class='game-square' data-tileId='0'></div>
           <div class='game-square' data-tileId='1'></div>
           <div class='game-square' data-tileId='2'></div>
@@ -105,8 +124,9 @@
           <div class='game-square' data-tileId='6'></div>
           <div class='game-square' data-tileId='7'></div>
           <div class='game-square' data-tileId='8'></div>
+          <div class='game-message'></div>
           <div class='game-overlay'>
-            <div class='login-message ui-login'>Sign in to play!</div>
+            <div class='game-login ui-login'>Sign in to play!</div>
             <div class='ui-user disable'>
               <div class='game-select game-ui'>
                 <button id='start-local'>Local Game</button>

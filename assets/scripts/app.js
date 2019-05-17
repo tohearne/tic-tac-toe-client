@@ -18,4 +18,5 @@ $(() => {
   $('.game-square').on('click', gameEvents.onClickSquare)
   $('#start-rematch').on('click', gameEvents.onGameRestart)
   $('.button-back').on('click', gameEvents.onMenuBack)
+//  $('.user-info').on('click', gameEvents.onGetGamesData)
 })
