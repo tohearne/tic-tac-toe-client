@@ -201,6 +201,53 @@ button {
   top: 36.5vw;
 }
 
+.multiplayer-message {
+  color: $text-error;
+}
+
+.game-strike {
+  background-color: $border-medium;
+  height: 95%;
+  position: absolute;
+  top: 2.5%;
+  width: 2%;
+}
+
+.strike-0 {
+  top: -31%;
+  transform: rotate(90deg);
+}
+
+.strike-1 {
+  top: 3%;
+  transform: rotate(90deg);
+}
+
+.strike-2 {
+  top: 36%;
+  transform: rotate(90deg);
+}
+
+.strike-3 {
+  left: 22%;
+}
+
+.strike-5 {
+  left: 76%;
+}
+
+.strike-6 {
+  height: 128%;
+  top: -14%;
+  transform: rotate(-45deg);
+}
+
+.strike-7 {
+  height: 128%;
+  top: -14%;
+  transform: rotate(45deg);
+}
+
 .failed {
   color: $text-error;
 }

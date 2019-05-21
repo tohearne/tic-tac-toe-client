@@ -12,6 +12,15 @@ const startNewGame = () => $.ajax({
   }
 })
 
+const joinGame = (id) => $.ajax({
+  url: `${config.apiUrl}/games/${id}`,
+  method: 'PATCH',
+  data: {},
+  headers: {
+    Authorization: `Token ${store.user.token}`
+  }
+})
+
 const updateGame = index => $.ajax({
   url: `${config.apiUrl}/games/${store.game.id}`,
   method: 'PATCH',
@@ -29,6 +38,14 @@ const updateGame = index => $.ajax({
   }
 })
 
+const getGameData = id => $.ajax({
+  url: `${config.apiUrl}/games/${id}`,
+  method: 'GET',
+  headers: {
+    Authorization: `Token ${store.user.token}`
+  }
+})
+
 const getGamesData = () => $.ajax({
   url: `${config.apiUrl}/games`,
   method: 'GET',
@@ -39,6 +56,8 @@ const getGamesData = () => $.ajax({
 
 module.exports = {
   startNewGame,
+  joinGame,
   updateGame,
+  getGameData,
   getGamesData
 }

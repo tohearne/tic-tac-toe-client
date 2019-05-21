@@ -14,26 +14,29 @@ const lines = [
 const store = require('../store')
 
 const setNextLetter = () => {
-  if (store.game.local) store.game.nextMove = 'X'
-  else {
-    if (store.game.player_x.id === store.user.id) store.game.nextMove = 'X'
-    else store.game.nextMove = 'O'
-  }
+  store.game.nextMove = 'X'
+}
+
+const nextLetter = () => {
+  store.game.lastMove = store.game.nextMove
+  if (store.game.nextMove === 'X') store.game.nextMove = 'O'
+  else store.game.nextMove = 'X'
 }
 
 const setSquare = index => {
   if (store.game.cells[index] === '') {
     store.game.cells[index] = store.game.nextMove
-    if (store.game.local) {
-      store.game.lastMove = store.game.nextMove
-      if (store.game.nextMove === 'X') store.game.nextMove = 'O'
-      else store.game.nextMove = 'X'
-    }
+    nextLetter()
     return true
   } else return false
 }
 
-const checkWin = (letter, game) => lines.some(line => line.every(index => game.cells[index] === letter))
+const checkWin = (letter, game) => lines.some((line, index) => {
+  if (line.every(index => game.cells[index] === letter)) {
+    if (store.game) store.game.winningRow = index
+    return true
+  } else return false
+})
 
 const checkTie = () => store.game.cells.every(index => index !== '')
 
@@ -50,6 +53,7 @@ const countWins = (games) => {
 
 module.exports = {
   setNextLetter,
+  nextLetter,
   setSquare,
   checkWin,
   checkTie,

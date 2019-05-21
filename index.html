@@ -113,36 +113,60 @@
           <div class='game-header form-line'>
             <div class='game-turn game-x'>X</div>
             <div class='game-turn game-o'>O</div>
-            <div class='game-id'></div>
           </div>
-          <div class='game-square' data-tileId='0'></div>
-          <div class='game-square' data-tileId='1'></div>
-          <div class='game-square' data-tileId='2'></div>
-          <div class='game-square' data-tileId='3'></div>
-          <div class='game-square' data-tileId='4'></div>
-          <div class='game-square' data-tileId='5'></div>
-          <div class='game-square' data-tileId='6'></div>
-          <div class='game-square' data-tileId='7'></div>
-          <div class='game-square' data-tileId='8'></div>
+          <div class='game-square' id='0'></div>
+          <div class='game-square' id='1'></div>
+          <div class='game-square' id='2'></div>
+          <div class='game-square' id='3'></div>
+          <div class='game-square' id='4'></div>
+          <div class='game-square' id='5'></div>
+          <div class='game-square' id='6'></div>
+          <div class='game-square' id='7'></div>
+          <div class='game-square' id='8'></div>
           <div class='game-message'></div>
+          <div class='game-ui game-strike strike-0 disable'></div>
+          <div class='game-ui game-strike strike-1 disable'></div>
+          <div class='game-ui game-strike strike-2 disable'></div>
+          <div class='game-ui game-strike strike-3 disable'></div>
+          <div class='game-ui game-strike strike-4 disable'></div>
+          <div class='game-ui game-strike strike-5 disable'></div>
+          <div class='game-ui game-strike strike-6 disable'></div>
+          <div class='game-ui game-strike strike-7 disable'></div>
           <div class='game-overlay'>
             <div class='game-login ui-login'>Sign in to play!</div>
             <div class='ui-user disable'>
               <div class='game-select game-ui'>
                 <button id='start-local'>New Game</button>
-                <!-- <button id='start-online'>Multiplayer</button> -->
+                <button id='go-online'>Multiplayer</button>
+              </div>
+              <div class='game-multiplayer game-ui form-stack disable'>
+                <h1>Multiplayer</h1>
+                <button id='start-online'>Host Game</button>
+                <form class='join-game'>
+                  <input type='number' name='game[id]' placeholder='Game Id'>
+                  <input class='button' type='Submit' value='Join Game'>
+                </form>
+                <button class='button-back'>Menu</button>
+                <h6 class='multiplayer-message disable'></h6>
+              </div>
+              <div class='game-waiting game-ui form-stack disable'>
+                <h1>Waiting for other player...</h1>
+                <h2 id='game-id'></h2>
+              </div>
+              <div class='game-error game-ui form-stack disable'>
+                <h1>Oops!</h1>
+                <h3>Something went wrong!</h3>
+                <button class='button-back'>Menu</button>
               </div>
               <div class='game-results form-stack game-ui disable'>
                 <h1>Game Over</h1>
                 <h4 id='game-over-text'></h4>
-                <button id='start-rematch'>Rematch</button>
+                <button id='start-rematch'>Play Again?</button>
                 <button class='button-back'>Menu</button>
               </div>
             </div>
           </div>
         </div>
       </main>
-      <footer>
-      </footer>
     </body>
 </html>

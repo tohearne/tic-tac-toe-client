@@ -18,4 +18,6 @@ $(() => {
   $('.game-square').on('click', gameEvents.onClickSquare)
   $('#start-rematch').on('click', gameEvents.onGameRestart)
   $('.button-back').on('click', gameEvents.onMenuBack)
+  $('#go-online').on('click', gameEvents.onGoOnline)
+  $('.join-game').on('submit', gameEvents.onJoinGame)
 })
